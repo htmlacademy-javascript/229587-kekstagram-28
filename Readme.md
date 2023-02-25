@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Евгений Петров](https://up.htmlacademy.ru/javascript/28/user/229587).
-* Наставник: `Неизвестно`.
+- Студент: [Евгений Петров](https://up.htmlacademy.ru/javascript/28/user/229587).
+- Наставник: [Павел Лукин](https://htmlacademy.ru/profile/id1313529).
 
 ---
 
