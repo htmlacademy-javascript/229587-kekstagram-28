@@ -47,13 +47,13 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-function getIdNumber() {
+const getIdNumber = () => {
   let lastCountNumber = 0;
   return function () {
     lastCountNumber += 1;
     return lastCountNumber;
   };
-}
+};
 
 const postId = getIdNumber();
 const photoId = getIdNumber();
@@ -75,4 +75,6 @@ const createPost = () => ({
   comments: Array.from({length: getRandomInteger(1, COMMENT_COUNT)}, createComments),
 });
 
-export const listPost = Array.from({length: PICTURE_COUNT}, createPost);
+const listPost = () => Array.from({length: PICTURE_COUNT}, createPost);
+
+export {listPost};
