@@ -1,3 +1,3 @@
-import { listPost } from './data.js';
+import {renderPhoto} from './render-photo.js';
 
-listPost();
+renderPhoto();
