@@ -1,8 +1,7 @@
-import {listPost} from './data.js';
+import {onPictureClick} from './big-picture.js';
 
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const similarPhotos = listPost();
 
 const createPost = (post) => {
   const pictureElement = pictureTemplate.cloneNode(true);
@@ -10,10 +9,16 @@ const createPost = (post) => {
   pictureElement.querySelector('.picture__img').alt = post.description;
   pictureElement.querySelector('.picture__comments').textContent = post.comments.length;
   pictureElement.querySelector('.picture__likes').textContent = post.likes;
+
+  pictureElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    onPictureClick(post);
+  });
+
   return pictureElement;
 };
 
-const renderPhoto = () => {
+const renderPhoto = (similarPhotos) => {
   similarPhotos.forEach((item) => picturesContainer.append(createPost(item)));
 };
 
