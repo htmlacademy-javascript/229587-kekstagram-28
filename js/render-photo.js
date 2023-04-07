@@ -1,4 +1,4 @@
-import {onPictureClick} from './big-picture.js';
+import {showBigPictureModal} from './big-picture.js';
 
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -10,10 +10,7 @@ const createPost = (post) => {
   pictureElement.querySelector('.picture__comments').textContent = post.comments.length;
   pictureElement.querySelector('.picture__likes').textContent = post.likes;
 
-  pictureElement.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    onPictureClick(post);
-  });
+  pictureElement.addEventListener('click', () => showBigPictureModal(post));
 
   return pictureElement;
 };
