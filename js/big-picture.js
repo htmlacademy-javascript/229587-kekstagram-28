@@ -24,33 +24,35 @@ const onDocumentKeydown = (evt) => {
   }
 };
 
+const createCommentElement = (comment) => {
+  const element = socialCommentTemplate.cloneNode(true);
+  element.querySelector('.social__comment img').src = comment.avatar;
+  element.querySelector('.social__comment img').alt = comment.name;
+  element.querySelector('.social__comment p').textContent = comment.message;
+  return element;
+};
+
 const renderCommentsToList = (fullComments, openComments) => {
-  if (openComments >= fullComments.comments.length) {
+  if (openComments >= fullComments.length) {
     commentsLoader.classList.add('hidden');
-    openComments = fullComments.comments.length;
+    openComments = fullComments.length;
   } else {
     commentsLoader.classList.remove('hidden');
   }
-  for (let i = 0; i < openComments; i++) {
-    const clone = socialCommentTemplate.cloneNode(true);
-    clone.querySelector('.social__comment img').src = fullComments.comments[i].avatar;
-    clone.querySelector('.social__comment img').alt = fullComments.comments[i].name;
-    clone.querySelector('.social__comment p').textContent = fullComments.comments[i].message;
-    socialCommentsList.append(clone);
-  }
-  socialCommentCount.textContent = `${openComments} из ${fullComments.comments.length} комментариев`;
+  socialCommentsList.append(...fullComments.slice(0, openComments).map(createCommentElement));
+  socialCommentCount.textContent = `${openComments} из ${fullComments.length} комментариев`;
   socialCommentCount.classList.remove('hidden');
   return socialCommentsList;
 };
 
-const createCommentElement = (comment) => {
+const createComments = (comments) => {
   let commentsOpen = QUANTITY_COMMENTS;
-  renderCommentsToList(comment, commentsOpen);
+  renderCommentsToList(comments, commentsOpen);
 
   commentsLoader.addEventListener('click', () => {
     commentsOpen += QUANTITY_COMMENTS;
     socialCommentsList.innerHTML = '';
-    renderCommentsToList(comment, commentsOpen);
+    renderCommentsToList(comments, commentsOpen);
   });
 };
 
@@ -66,8 +68,7 @@ const showBigPictureModal = (post) => {
   socialCommentsList.innerHTML = '';
 
   document.addEventListener('keydown', onDocumentKeydown);
-  createCommentElement(post);
-  socialCommentsList.append(...post.comments.map(createCommentElement));
+  createComments(post.comments);
   bigPicture.classList.remove('hidden');
 };
 
