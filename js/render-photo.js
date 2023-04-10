@@ -1,4 +1,4 @@
-import {showBigPictureModal} from './big-picture.js';
+import { showBigPictureModal } from './big-picture.js';
 
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -19,4 +19,4 @@ const renderPhoto = (similarPhotos) => {
   similarPhotos.forEach((item) => picturesContainer.append(createPost(item)));
 };
 
-export {renderPhoto};
+export { renderPhoto };
