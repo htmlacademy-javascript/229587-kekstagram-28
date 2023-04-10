@@ -6,6 +6,7 @@ import { sendData } from './api.js';
 import { createErrorMessage, createSuccessMessage } from './error-message.js';
 
 const FILE_TYPES = ['png', 'jpeg', 'webp', 'jpg'];
+const DEFAULT_SCALE = 100;
 
 const effectsPreview = document.querySelectorAll('.effects__preview');
 const preview = document.querySelector('.img-upload__preview img');
@@ -23,7 +24,7 @@ const submitButtonTextContent = {
 const openEditingImage = () => {
   editImage.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  resetScale(100);
+  resetScale(DEFAULT_SCALE);
   resetEffects();
 
   imgUploadCloseButton.addEventListener('click', onEditImageCloseButtonClick);
